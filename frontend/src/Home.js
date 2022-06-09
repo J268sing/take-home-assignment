@@ -5,7 +5,11 @@ import axios from 'axios';
 
 
 class Home extends Component {
-
+    constructor(props) {
+        super(props);
+    
+        this._isMounted = false;
+    }
     removeCharacter = index => {
         const { characters } = this.state;
         this.setState({
@@ -15,22 +19,28 @@ class Home extends Component {
         });
     }
 
-    getTransactions = character => {
+      getTransactions = (character) => {
         console.log(character)
-        axios
+        let getTransactionsDataa = []
+        let transactions;
+        const data =   axios
         .get('https://blockchain.info/rawaddr/' + character)
         .then(res => {
-          let transactions = res.data.txs
-          let getTransactionsDataa = []
+          transactions = res.data.txs
+          console.log(transactions)
           for (let i = 0; i < transactions.length; i++) {
-            this.setState({ getTransactionsData: [...this.state.getTransactionsData, [transactions[i].hash, transactions[i].fee]]});
+              getTransactionsDataa += [transactions[i].hash,transactions[i].fee]
           }
-          console.log(getTransactionsDataa)
-          this.setState({ getTransactionsData: getTransactionsDataa});
+          this._isMounted && this.setState({ getTransactionsData: [...this.state.getTransactionsData, getTransactionsDataa]});
           console.log(this.state.getTransactionsData)
-
+         return transactions
         });
+        
     }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+     }
     state = {
         characters: [],
         balances: [],
@@ -46,7 +56,7 @@ class Home extends Component {
           let balance = r.data.final_balance
           this.setState({ balances: [...this.state.balances, balance] })
        });
-        
+
     }
 
     render() {
