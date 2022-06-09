@@ -15,38 +15,38 @@ class Home extends Component {
         });
     }
 
-    getTransactions = index => {
+    getTransactions = character => {
+        console.log(character)
         axios
-            .get('/' + this.state.characters[index] + '/txs')
-            .then(res => {  
-                let transactions = res.data.transactions
-                this.setState({ getTransactionsData: [...this.state.getTransactionsData, transactions] })
-            });
+        .get('https://blockchain.info/rawaddr/' + character)
+        .then(res => {
+          let transactions = res.data.txs
+          let getTransactionsDataa = []
+          for (let i = 0; i < transactions.length; i++) {
+            this.setState({ getTransactionsData: [...this.state.getTransactionsData, [transactions[i].hash, transactions[i].fee]]});
+          }
+          console.log(getTransactionsDataa)
+          this.setState({ getTransactionsData: getTransactionsDataa});
+          console.log(this.state.getTransactionsData)
+
+        });
     }
     state = {
         characters: [],
-        balances: [1,2],
+        balances: [],
         getTransactionsData: []
     };
 
     handleSubmit = character => {
+        //console.log(character.name)
         this.setState({ characters: [...this.state.characters, character] });
         axios
-    .get('https://blockchain.info/rawaddr/3E8ociqZa9mZUSwGdSmAEMAoAxBK3FNDcd')
+    .get('https://blockchain.info/rawaddr/' + character.name)
     .then(r => {
           let balance = r.data.final_balance
-          console.log(balance)
-      });
-        /*console.log('jashan')
-        axios
-            .get('/' + character + '/balance')
-            .then(res => {  
-                console.log(res)
-                let balance = res.data.balance
-                console.log('asa')
-                this.setState({ balances: [...this.state.balances, balance] })
-            });
-        console.log(this.state.balances)*/
+          this.setState({ balances: [...this.state.balances, balance] })
+       });
+        
     }
 
     render() {

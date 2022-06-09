@@ -20,7 +20,7 @@ class Table extends Component {
                     <tr key={index}>
                         <td>{row.name}</td>
                         <td>{balanceData[index]}</td>
-                        <td><Link to="/address"><button style={{backgroundColor:"green"}} onClick={() => props.getTransactions(index)}>View Transactions</button></Link></td>
+                        <td><Link to="/address"><button style={{backgroundColor:"green"}} onClick={() => props.getTransactions(row.name)}>View Transactions</button></Link></td>
                         
                         <td><button style={{backgroundColor:"red"}} onClick={() => props.removeCharacter(index)}>Delete</button></td>
                     </tr>

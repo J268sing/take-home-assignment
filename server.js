@@ -35,9 +35,10 @@ app.get('/:address/txs', function(req, res) {
 });
 
 app.get('/:address/balance', function(req, res) {
+  console.log(req.params.address)
   axios
-    .get('https://blockchain.info/rawaddr/3E8ociqZa9mZUSwGdSmAEMAoAxBK3FNDcd')
-    .then(r => {  
+  .get('https://blockchain.info/rawaddr/' + req.params.address)
+  .then(r => {  
           //balance = r.data.final_balance
           res.send('{balance: }')
       });
