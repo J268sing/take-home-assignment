@@ -1,5 +1,6 @@
 # take-home-assignment
 
+<img src="https://github.com/J268sing/take-home-assignment/blob/main/demo.gif" width="250" height="400"/>
 
 * The app lets the user:
     * Add/Remove bitcoin addresses
