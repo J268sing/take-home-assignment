@@ -22,7 +22,3 @@ $ npm start
 ### Assumptions
 - the app assumes that users inputs VALID Bitcoin addresses and other inputs are also valid
 
-
-
-## Built Using
-* [Kotlin](https://kotlinlang.org/) - Used to build the Android client
