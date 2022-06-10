@@ -14,14 +14,13 @@ Clone the repository. The repository contains an `app` folder that contains all 
 run these commands to get the app working to your local server:
 
 ```
-$ go run main.go
+$ git clone https://github.com/J268sing/take-home-assignment.git
+$ cd ~/pathToRepo/app
+$ npm install
+$ npm start
 ```
-### Prerequisites
-
-You need the following installed:
-
-- [Android Studio](https://developer.android.com/studio/index) installed on your machine (v3.x or later). Download here.
-- Go version 1.10.2 or later [installed](https://golang.org/doc/install#install).
+### Assumptions
+- the app assumes that users inputs VALID Bitcoin addresses and other inputs are also valid
 
 
 
